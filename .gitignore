@@ -1,3 +1,10 @@
+#Stuff that We dont want
+*.meta
+Editor/CrossPlatformInput
+Standard Assets/CrossPlatformInput
+Standard Assets/Utility
+Standard Assets/Vehicles
+Standard Assets/CrossPlatformInput
 # Windows image file caches
 Thumbs.db
 ehthumbs.db
