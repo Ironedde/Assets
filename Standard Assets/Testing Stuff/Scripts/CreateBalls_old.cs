@@ -2,9 +2,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using System;
-[Serializable]
-public class CreateBalls : MonoBehaviour {
 
+[Serializable]
+public class CreateBalls_old : MonoBehaviour {
+	
 	public GameObject toCreate;
 	public Vector3 position;
 	public int layers;
@@ -13,25 +14,26 @@ public class CreateBalls : MonoBehaviour {
 	[SerializeField]
 	private int TotalBalls;
 	private int balsCreated;
-
+	
+	
 	[SerializeField]
-	private List<SerializableList> balls = new List<SerializableList>();
+	private List<SerializableList_old> balls = new List<SerializableList_old>();
 	
 	// Use this for initialization
 	void Start () {
-
+		
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
+		
 	}
 	public void Create(){
 		if((layers*(width*width))>4000){
 			print("TO MANY BALS!!");
 		}
 		else{
-			SerializableList toAdd = new SerializableList();
+			SerializableList_old toAdd = new SerializableList_old();
 			Vector3 currentPos = position;
 			for(int i=0;i<layers;i++){
 				for(int o = 0;o<width;o++){
@@ -60,7 +62,7 @@ public class CreateBalls : MonoBehaviour {
 		}
 		int last = balls.Count-1;
 		for(int i = 0;i<balls[last].Count();i++){
-			DestroyImmediate(balls[last].Get(i));
+			DestroyImmediate(balls[last].Get (i));
 		}
 		TotalBalls -= layers*(width*width);
 		balls.RemoveAt(last);
@@ -68,12 +70,13 @@ public class CreateBalls : MonoBehaviour {
 }  
 
 [Serializable]
-public class SerializableList : SerializableListGeneric<GameObject>{
-
+public class SerializableList_old : SerializableListGeneric_old<GameObject>{
+	
 }
 
-//[Serializable]
-public class SerializableListGeneric<type>{
+[Serializable]
+public class SerializableListGeneric_old<type>{
+	[SerializeField]
 	public List<type> list = new List<type>();
 	public void Add(type input){
 		list.Add(input);
@@ -81,21 +84,11 @@ public class SerializableListGeneric<type>{
 	public void Remove(int i){
 		list.RemoveAt(i);
 	}
-	/*
-	public type this[int i]{
-		get{
-			CreateBalls.printf("GET");
-			return list[i];
-		}
-		set{
-		}
-
-	}*/
-	public int Count(){
-		return list.Count;
-	}
 	public type Get(int i){
 		return list[i];
+	}
+	public int Count(){
+		return list.Count;
 	}
 	public Boolean isEmpty(){
 		return list.Count>0;
